@@ -421,3 +421,83 @@ end
 puts highest_scoring_word("man i need a taxi up to ubud")
 
 # ------------------------------ twenty three ---------------------------
+
+def  first_non_repeating_letter(s)
+  s.chars.find {|i| s.downcase.count(i)==1 || s.upcase.count(i)==1} || "None!"
+end
+
+# puts first_non_repeating_letter("sTreSS")
+
+# ------------------------------ twenty four ---------------------------
+
+def create_phone_number()
+  puts "Enter a 10 digit number, please: "
+  number = gets.chomp
+  if number =~ /[1-9]/ && number.length == 10
+    puts number.gsub(/(\d{3})(\d{3})(\d{4})/, '(\1) \2-\3')
+  else
+    puts "please enter number between 1-9"
+  end
+end
+
+# create_phone_number()
+
+# ------------------------------ twenty five ---------------------------
+
+def group_by_marks(marks, pass_marks)
+  # your code here
+    marks.group_by{|key, value| value > pass_marks ? key = "passed" : key = "failed"}
+end
+# marks = {"Ramesh":23, "Vivek":40, "Harsh":88, "Mohammad":60}
+# puts group_by_marks(marks, 30)
+
+# ------------------------------ twenty six ---------------------------
+
+def timeConversion(s)
+  # Write your code here
+  if s.include?("A")
+    s[0..1] = "00" if s[0..1] == "12"
+  elsif s.include?("P")
+    hour = s[0..1].to_i
+    s[0..1] = "#{12+hour}" if hour < 12
+  end
+  s.gsub!(/[A-Z]/, "")
+end
+# puts timeConversion("07:05:45PM")
+
+# ------------------------------ twenty seven ---------------------------
+
+def fizzBuzz(n)
+  # Write your code here
+  mul3 = (1..n).select {|i| i%3==0 }
+  mul5 = (1..n).select {|i| i%5==0 }
+  (1..n).each do |num|
+      if mul3.include?(num) && num != 3 * 5
+          puts "Fizz"
+      elsif num == mul5.include?(num) && num != 3 * 5
+          puts "Buzz"
+      elsif num == 5 * 3
+          puts "FizzBuzz"
+      else
+          puts num
+      end
+  end
+end
+
+# fizzBuzz(15)
+
+# ------------------------------ twenty eight ---------------------------
+
+def rot13(secret_messages)
+  input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
+  secret_messages.collect { |msg| msg.tr(input, output)}
+end
+# secret_messages = [
+# "qrygn",
+# "zrrg ng pubpbyngr pbeare",
+# "gra zra",
+# "gjb onpxhc grnzf",
+# "zvqavtug rkgenpgvba"
+# ]
+# puts rot13(secret_messages)
